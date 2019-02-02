@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './member.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Message, Checkbox, Form, Label } from 'semantic-ui-react';
 import {MessageHeader} from '../webform/registrationform/registrationform';
 
@@ -40,7 +39,7 @@ class MemberScreen extends Component {
   }
 
   notifyByPushChanged = () => {
-    
+
   }
 
   render() {
@@ -53,13 +52,13 @@ class MemberScreen extends Component {
         <Checkbox toggle label="Phone" value="Phone" checked={this.state.isByPhone}
           onChange={() => this.notifyByPhoneChanged()}/>
         {
-          this.state.isByPhone ? 
+          this.state.isByPhone ?
             <Form.Input
             type='tel'
             style={{ width: '50%'}}
             icon='phone'
             iconPosition='right'
-            placeholder="+1 (234) 567 890"/> 
+            placeholder="+1 (234) 567 890"/>
             : null
         }
         <br/>
@@ -67,18 +66,18 @@ class MemberScreen extends Component {
           onChange={() => this.notifyByEmailChanged()}
           icon='mail'/>
         {
-          this.state.isByEmail ? 
+          this.state.isByEmail ?
             <Form.Input
             type='email'
             icon='mail'
             iconPosition='right'
             style={{ width: '50%'}}
-            placeholder="abc@def.com"/> 
+            placeholder="abc@def.com"/>
             : null
         }
         <br/>
         {
-          this.state.isByPush ? 
+          this.state.isByPush ?
           <Checkbox toggle label="Push Notifications" value="notification" checked={this.state.isByEmail}
             onChange={() => this.notifyByPushChanged()}/>
               : null

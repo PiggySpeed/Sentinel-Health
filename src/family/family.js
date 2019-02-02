@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './family.css';
 
@@ -24,7 +23,7 @@ class FamilyScreen extends Component {
       isMail: true,
     })
   }
-  
+
   componentWillMount(){
     this.setState({
       isMail: true,
@@ -81,7 +80,7 @@ class FamilyScreen extends Component {
             icon='truck'
             iconPosition='right'
             style={{ width: '50%'}}
-            placeholder="Mailing Address" /> 
+            placeholder="Mailing Address" />
             : null
         }
 
@@ -93,7 +92,7 @@ class FamilyScreen extends Component {
             icon='mail'
             iconPosition='right'
             style={{ width: '50%'}}
-            placeholder="abc@def.com" /> 
+            placeholder="abc@def.com" />
             : null
         }
 
@@ -105,10 +104,10 @@ class FamilyScreen extends Component {
             icon='phone'
             iconPosition='right'
             style={{ width: '50%'}}
-            placeholder="+1 (234) 567 890" /> 
+            placeholder="+1 (234) 567 890" />
             : null
         }
-              
+
         <Dropdown text='Select Language'>
           <Dropdown.Menu>
             <Dropdown.Item text='Korean' />
