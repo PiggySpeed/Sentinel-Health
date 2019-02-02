@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './member.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Message, Checkbox, Form, MessageHeader, Label } from 'semantic-ui-react';
+import { Message, Checkbox, Form, Label } from 'semantic-ui-react';
+import {MessageHeader} from '../webform/registrationform/registrationform';
 
 const styles = {
   container: {
@@ -46,8 +47,9 @@ class MemberScreen extends Component {
     return (
       <Message info>
         <MessageHeader
-            icon="comment outline"
-            title="I'd like to receive notification by: " />
+            icon="alarm outline"
+            title="Notification Options"
+            subtitle="I'd like to receive notification by: " />
         <Checkbox toggle label="Phone" value="Phone" checked={this.state.isByPhone}
           onChange={() => this.notifyByPhoneChanged()}/>
         {
@@ -55,18 +57,23 @@ class MemberScreen extends Component {
             <Form.Input
             type='tel'
             style={{ width: '50%'}}
-            placeholder="090"/> 
+            icon='phone'
+            iconPosition='right'
+            placeholder="+1 (234) 567 890"/> 
             : null
         }
         <br/>
         <Checkbox toggle label="Email" value="Email" checked={this.state.isByEmail}
-          onChange={() => this.notifyByEmailChanged()}/>
+          onChange={() => this.notifyByEmailChanged()}
+          icon='mail'/>
         {
           this.state.isByEmail ? 
             <Form.Input
             type='email'
+            icon='mail'
+            iconPosition='right'
             style={{ width: '50%'}}
-            placeholder="090"/> 
+            placeholder="abc@def.com"/> 
             : null
         }
         <br/>

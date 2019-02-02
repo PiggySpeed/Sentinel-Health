@@ -71,7 +71,7 @@ const NotificationOptions = ({}) => (
   </span>
 );
 
-const MessageHeader = ({ icon, title, subtitle, borderColor }) => (
+export const MessageHeader = ({ icon, title, subtitle, borderColor }) => (
   <div style={{ display: 'flex', width: '100%', alignItems: 'center', marginBottom: '1rem' }}>
     <Icon
       style={{
@@ -171,7 +171,7 @@ class RegistrationForm extends Component {
                 label='Heart Rate'
                 type='text'
                 style={{ width: '50%'}}
-                onChange={e => this.onInputchange('heartrate', e)}
+                onChange={e => this.onInputChange('heartrate', e)}
                 value={this.state.heartrate} />
                 {/* Maybe include image here */}
               <p style={styles3.description}>Test Text for heart rate</p>
@@ -188,7 +188,7 @@ class RegistrationForm extends Component {
                 label='Blood Oxygen Saturation'
                 type='text'
                 style={{ width: '50%'}}
-                onChange={e => this.onInputchange('oxygen', e)}
+                onChange={e => this.onInputChange('oxygen', e)}
                 value={this.state.oxygen} />
               {/* Maybe include image here */}
               <p style={styles3.description}>Test Text for blood oxygen</p>
@@ -205,12 +205,17 @@ class RegistrationForm extends Component {
                 label='Respiratory Rate'
                 type='text'
                 style={{ width: '50%'}}
-                onChange={e => this.onInputchange('respiratory', e)}
+                onChange={e => this.onInputChange('respiratory', e)}
                 value={this.state.respiratory} />
               <p style={styles3.description}>Test Text for respiratory rate</p>
             </Message>
             <FamilyScreen/>
             <MemberScreen/>
+            <Button primary 
+              style={{width: '20%', 
+                      marginLeft:'auto', 
+                      marginRight:'auto'}} 
+              icon='check'/>
           </div>
          
         </Form>

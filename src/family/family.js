@@ -3,7 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './family.css';
 
-import { Label, Form, Message, MessageHeader, Button, Dropdown } from 'semantic-ui-react'
+import { Label, Form, Message, Button, Dropdown } from 'semantic-ui-react'
+
+import {MessageHeader} from '../webform/registrationform/registrationform';
 
 const styles = {
   container: {
@@ -24,7 +26,6 @@ class FamilyScreen extends Component {
   }
   
   componentWillMount(){
-    // this.handleMailClick();
     this.setState({
       isMail: true,
     });
@@ -36,7 +37,6 @@ class FamilyScreen extends Component {
       isTel: false,
       isEmail: false,
     });
-    console.log('this.isMail:::' + this.state.isMail);
   }
 
   handleEmailClick = () => {
@@ -45,7 +45,6 @@ class FamilyScreen extends Component {
       isTel: false,
       isEmail: true,
     });
-    console.log('this.isEmail:::' + this.state.isEmail);
   }
 
   handleTelClick = () => {
@@ -54,7 +53,6 @@ class FamilyScreen extends Component {
       isTel: true,
       isEmail: false,
     });
-    console.log('this.isTel:::' + this.state.isTel);
   }
 
 
@@ -62,26 +60,28 @@ class FamilyScreen extends Component {
     return (
         <Message info>
           <MessageHeader
-            icon="comment outline"
-            title="Consent Information" />
+            icon="check"
+            title="Consent Options"/>
 
           <span style={{ display: 'flex', width: '100%' }}>
             <Button style={{width: '50%'}} content="Mail" primary={this.state.isMail} onClick={() => this.handleMailClick()}/>
             <Button style={{width: '50%'}} content="Email" primary={this.state.isEmail} onClick={() => this.handleEmailClick()}/>
-            <Button style={{width: '50%'}} content="Tel" primary={this.state.isTel} onClick={() => this.handleTelClick()}/>
+            <Button style={{width: '50%'}} content="Phone Number" primary={this.state.isTel} onClick={() => this.handleTelClick()}/>
           </span>
           <Form.Input
             label='Name'
             type='text'
             style={{ width: '50%'}}
-            placeholder="This is some name"/>
+            placeholder="Starbucks Nguyen"/>
         {
           this.state.isMail ?
             <Form.Input
             label='Mail'
             type='text'
+            icon='truck'
+            iconPosition='right'
             style={{ width: '50%'}}
-            placeholder="Mail Address" /> 
+            placeholder="Mailing Address" /> 
             : null
         }
 
@@ -90,18 +90,22 @@ class FamilyScreen extends Component {
             <Form.Input
             label='Email'
             type='email'
+            icon='mail'
+            iconPosition='right'
             style={{ width: '50%'}}
-            placeholder="Email Address" /> 
+            placeholder="abc@def.com" /> 
             : null
         }
 
         {
           this.state.isTel ?
             <Form.Input
-            label='Mail'
+            label='Phone Number'
             type='tel'
+            icon='phone'
+            iconPosition='right'
             style={{ width: '50%'}}
-            placeholder="Tel No." /> 
+            placeholder="+1 (234) 567 890" /> 
             : null
         }
               
