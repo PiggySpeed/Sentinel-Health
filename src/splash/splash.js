@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './splash.css';
 
 const styles = {
     container: {

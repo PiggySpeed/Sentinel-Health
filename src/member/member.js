@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './member.css';
 
 const styles = {
   container: {
