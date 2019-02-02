@@ -3,11 +3,12 @@ import './webform.css';
 
 import MockHeaderImage from './mock_header_image.png';
 import WebformHeader from './webformheader/webformheader';
-import Form from './form/form';
+import RegistrationForm from './registrationform/registrationform';
 
 const styles = {
   container: {
     display: 'flex',
+    flexFlow: 'column',
     height: '100%',
     width: '100%',
     border: '1px solid black'
@@ -25,7 +26,7 @@ class WebformScreen extends Component {
           height={200}
           learnMoreURL="https://www.omronhealthcare.ca/blood-pressure/"
         />
-        <Form />
+        <RegistrationForm />
       </div>
     );
   }
