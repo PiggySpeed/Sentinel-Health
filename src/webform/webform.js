@@ -25,7 +25,6 @@ const styles = {
 		flexFlow: 'column',
 		height: 'min-content',
 		overflowX: 'hidden',
-		width: '70%'
 	},
 	header: {
 		height: 90,
@@ -67,7 +66,7 @@ class WebformScreen extends Component {
 					<h1 style={styles.confirmationText}>Confirmation</h1>
 					<h3>You have successfully made the order</h3>
 				</div>
-				<div style={styles.innerContainer}>
+				<div style={styles.innerContainer} className="responsive-form">
 
 					<WebformHeader
 						title="Peace of Mind"
@@ -76,7 +75,7 @@ class WebformScreen extends Component {
 						height={200}
 						learnMoreURL="https://www.omronhealthcare.ca/blood-pressure/"
 					/>
-					<div className="responsive-form">
+					<div style={{display: 'flex', flexFlow: 'column'}}>
 						<RegistrationForm />
 						<InfoPanel title={MOCK_INFO_TITLE} text={MOCK_INFO_TEXT} />
 					</div>

@@ -23,6 +23,11 @@ const styles = {
     display: 'flex',
     width: '100%',
     flex: 'none'
+  },
+  innerContainer: {
+    display: 'flex',
+    flexFlow: 'column',
+    width: '100%'
   }
 };
 
@@ -114,7 +119,7 @@ class RegistrationForm extends Component {
   render() {
     return (
       <div style={styles.container}>
-      <div>
+      <div style={styles.innerContainer}>
         <Form>
           <FormInstructions
             header={MOCK_HEADER}
@@ -211,13 +216,12 @@ class RegistrationForm extends Component {
             </Message>
             <FamilyScreen/>
             <MemberScreen/>
-            <Button primary 
-              style={{width: '20%', 
-                      marginLeft:'auto', 
-                      marginRight:'auto'}} 
-              icon='check'/>
+            <Button.Group>
+              <Button>Complete Later</Button>
+              <Button.Or />
+              <Button primary>Submit</Button>
+            </Button.Group>
           </div>
-         
         </Form>
         </div>
       </div>

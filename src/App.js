@@ -8,6 +8,8 @@ import Member from "./member/member.js";
 import Device from "./device/device.js";
 import Webform from "./webform/webform.js";
 
+const IS_PROD = true;
+
 class App extends Component {
 	sendEmail() {
 		// Temporary sending to a local server, will spin a real one when I wake up, if necessary
@@ -17,18 +19,18 @@ class App extends Component {
 			.then(contents => console.log(contents))
 			.catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
 	}
-	
+
 	render() {
 		return (
 			<div className="App">
 				<Router>
 					<div style={{ display: 'flex', flexFlow: 'column', width: '100%', height: '100%' }}>
-						<div>
+						{!IS_PROD && <div>
 							<Link to="/family">Family</Link>
 							<Link to="/member">Member</Link>
 							<Link to="/about">Device</Link>
 							<Link to="/webform">Webform</Link>
-						</div>
+						</div>}
 						<Route path="/" exact component={Device} />
 						<Route path="/family" exact component={Family} />
 						<Route path="/member" exact component={Member} />

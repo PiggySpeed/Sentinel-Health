@@ -1,6 +1,7 @@
 .responsive-form {
   display: flex;
   flex-flow: column;
+  width: 100%;
 }
 
 /* @media only screen and (min-width: 1000px) {
@@ -9,3 +10,17 @@
     flex-flow: row;
   }
 } */
+
+
+@media only screen and (min-width: 1000px) {
+  .responsive-form {
+    display: flex;
+    flex-flow: row;
+    width: 70%;
+  }
+}
+
+/* Hide Scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}

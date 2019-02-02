@@ -15,6 +15,11 @@ const styles = {
     height: 'auto',
     width: '100%'
   },
+  headerBar: {
+    height: 200,
+    width: '100%',
+    backgroundColor: '#0673AE'
+  },
   textContainer: {
     position: 'absolute',
     display: 'flex',
@@ -29,14 +34,15 @@ const styles = {
     position: 'relative',
     fontWeight: 'bold',
     color: 'white',
-    textShadow: '0px 0px 5px #000000',
+    // textShadow: '0px 0px 5px #000000',
     fontSize: 28
   },
   subtitle: {
     color: 'white',
-    textShadow: '0px 0px 5px #000000'
+    // textShadow: '0px 0px 5px #000000'
   },
   learnmore: {
+    color: 'white',
     textDecoration: 'underline',
   }
 };
@@ -45,7 +51,8 @@ class WebformHeader extends Component {
   render() {
     return (
       <div style={styles.container({height: this.props.height})}>
-        <img src={this.props.headerImg} style={styles.headerImg} />
+        {/*<img src={this.props.headerImg} style={styles.headerImg} />*/}
+        <div style={styles.headerBar}></div>
         <div style={styles.textContainer}>
           <h1 style={styles.title}>{this.props.title}</h1>
           <span>
