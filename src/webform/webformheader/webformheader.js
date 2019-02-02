@@ -18,20 +18,23 @@ const styles = {
     position: 'absolute',
     display: 'flex',
     flexFlow: 'column',
+    justifyContent: 'flex-end',
     bottom: 0,
     left: 0,
+    right: 0,
     padding: '1rem'
   },
   title: {
     position: 'relative',
-    color: 'black',
+    fontWeight: 'bold',
+    color: 'white',
     fontSize: 28
   },
   subtitle: {
-    color: 'black'
+    color: 'white'
   },
   learnmore: {
-
+    textDecoration: 'underline'
   }
 };
 

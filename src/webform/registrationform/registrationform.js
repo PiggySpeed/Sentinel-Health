@@ -68,7 +68,7 @@ const NotificationOptions = ({}) => (
   </span>
 );
 
-const MessageHeader = ({ icon, title, subtitle }) => (
+const MessageHeader = ({ icon, title, subtitle, borderColor }) => (
   <div style={{ display: 'flex', width: '100%', alignItems: 'center', marginBottom: '1rem' }}>
     <Icon
       style={{
@@ -84,11 +84,11 @@ const MessageHeader = ({ icon, title, subtitle }) => (
         borderRadius: 5 }}
       name={icon} />
     <div style={{ display: 'flex', flexFlow: 'column' }}>
-      <Message.Header style={{ marginTop: '0.5rem' }}>{title}</Message.Header>
-      <label>{subtitle}</label>
+      <Message.Header style={{ marginTop: '0.5rem', color: '#0e566c' }}>{title}</Message.Header>
+      <label style={{color: '#0e566c'}}>{subtitle}</label>
     </div>
   </div>
-)
+);
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -97,7 +97,8 @@ class RegistrationForm extends Component {
       systolic: 120,
       diastolic: 80,
       heartrate: 100,
-      oxygen: 75
+      oxygen: 75,
+      respiratory: 20
     };
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -191,11 +192,19 @@ class RegistrationForm extends Component {
 
             {/* Respiratory Rate */}
             <Message info>
-              <Message.Header>Blood Pressure</Message.Header>
-              <p>Did you know it's been a while?</p>
-              <Form.Input label='Enter Password' type='password' />
+              <MessageHeader
+                icon="cloud"
+                title="Respiratory Rate"
+                subtitle="Notify me when the respiratory rate is too low or high."
+              />
+              <Form.Input
+                label='Respiratory Rate'
+                type='text'
+                style={{ width: '50%'}}
+                onChange={e => this.onInputchange('respiratory', e)}
+                value={this.state.respiratory} />
+              <p style={styles3.description}>Test Text for respiratory rate</p>
             </Message>
-
           </Form.Field>
         </Form>
       </div>

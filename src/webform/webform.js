@@ -11,7 +11,12 @@ const styles = {
     flexFlow: 'column',
     height: '100%',
     width: '100%',
-    border: '1px solid black'
+    overflowY: 'scroll'
+  },
+  innerContainer: {
+    display: 'flex',
+    flexFlow: 'column',
+    height: 'min-content'
   }
 };
 
@@ -19,14 +24,16 @@ class WebformScreen extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <WebformHeader
-          title="Peace of Mind"
-          subtitle="Buying this for a loved one? Get notified when something goes wrong."
-          headerImg={MockHeaderImage}
-          height={200}
-          learnMoreURL="https://www.omronhealthcare.ca/blood-pressure/"
-        />
-        <RegistrationForm />
+        <div style={styles.innerContainer}>
+          <WebformHeader
+            title="Peace of Mind"
+            subtitle="Buying this for a loved one? Get notified when something goes wrong."
+            headerImg={MockHeaderImage}
+            height={500}
+            learnMoreURL="https://www.omronhealthcare.ca/blood-pressure/"
+          />
+          <RegistrationForm />
+        </div>
       </div>
     );
   }
