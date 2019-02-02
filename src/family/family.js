@@ -1,72 +1,121 @@
 import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './family.css';
 
-import Webform from "../webform/webform.js";
+import { Label, Form, Message, MessageHeader, Button, Dropdown } from 'semantic-ui-react'
 
 const styles = {
-	container: {
-		display: 'flex',
-		height: '100%',
-		width: '100%',
-		border: '1px solid black',
-		flexDirection: 'column',
-		alignItems: 'center'
-	},
-	header: {
-		height: 90,
-		width: '100%',
-		backgroundColor: '#003b64',
-		display: 'flex',
-		justifyContent: 'center'
-	},
-	innerHeader: {
-		width: '70%',
-		display: 'flex',
-		justifyContent: 'flex-start',
-		alignItems: 'center'
-	},
-	logo: {
-		width: 70,
-		height: 70
-	},
-	body: {
-		width: '70%',
-	},
-	confirmationText: {
-		marginTop: 10,
-		marginBottom: 10
-	},
-	optInContainer: {
-		width: '100%',
-		borderRadius: 3,
-		borderWidth: 1
-	},
-	optInHeader: {
-		height: 50,
-		width: '100%',
-		background: 'linear-gradient(to right bottom, #2e3337, #003b64)',
-	}
+  container: {
+    display: 'flex',
+    height: '100%',
+    width: '100%',
+    border: '1px solid black'
+  },
 };
 
 class FamilyScreen extends Component {
-	render() {
-		return (
-			<div style={styles.container}>
-				<div style={styles.header}>
-					<div style={styles.innerHeader}>
-						<img style={styles.logo} src={'https://images.bbycastatic.ca/sf/images/common/main-logo.svg'} alt=''/>
-					</div>
-				</div>
-				<div style={styles.body}>
-					<h1 style={styles.confirmationText}>Confirmation</h1>
-					<h3>You have successfully made the order</h3>
 
-					<Webform></Webform>
+  constructor(props){
+    super(props);
+    this.setState({
+      isMail: true,
+    })
+  }
+  
+  componentWillMount(){
+    // this.handleMailClick();
+    this.setState({
+      isMail: true,
+    });
+  }
 
-				</div>
-			</div>
-		);
-	}
+  handleMailClick = () => {
+    this.setState({
+      isMail: true,
+      isTel: false,
+      isEmail: false,
+    });
+    console.log('this.isMail:::' + this.state.isMail);
+  }
+
+  handleEmailClick = () => {
+    this.setState({
+      isMail: false,
+      isTel: false,
+      isEmail: true,
+    });
+    console.log('this.isEmail:::' + this.state.isEmail);
+  }
+
+  handleTelClick = () => {
+    this.setState({
+      isMail: false,
+      isTel: true,
+      isEmail: false,
+    });
+    console.log('this.isTel:::' + this.state.isTel);
+  }
+
+
+  render() {
+    return (
+        <Message info>
+          <MessageHeader
+            icon="comment outline"
+            title="Consent Information" />
+
+          <span style={{ display: 'flex', width: '100%' }}>
+            <Button style={{width: '50%'}} content="Mail" primary={this.state.isMail} onClick={() => this.handleMailClick()}/>
+            <Button style={{width: '50%'}} content="Email" primary={this.state.isEmail} onClick={() => this.handleEmailClick()}/>
+            <Button style={{width: '50%'}} content="Tel" primary={this.state.isTel} onClick={() => this.handleTelClick()}/>
+          </span>
+          <Form.Input
+            label='Name'
+            type='text'
+            style={{ width: '50%'}}
+            placeholder="This is some name"/>
+        {
+          this.state.isMail ?
+            <Form.Input
+            label='Mail'
+            type='text'
+            style={{ width: '50%'}}
+            placeholder="Mail Address" /> 
+            : null
+        }
+
+        {
+          this.state.isEmail ?
+            <Form.Input
+            label='Email'
+            type='email'
+            style={{ width: '50%'}}
+            placeholder="Email Address" /> 
+            : null
+        }
+
+        {
+          this.state.isTel ?
+            <Form.Input
+            label='Mail'
+            type='tel'
+            style={{ width: '50%'}}
+            placeholder="Tel No." /> 
+            : null
+        }
+              
+        <Dropdown text='Select Language'>
+          <Dropdown.Menu>
+            <Dropdown.Item text='Korean' />
+            <Dropdown.Item text='Vietnamese' />
+            <Dropdown.Item text='Chinese' />
+            <Dropdown.Item text='English' />
+          </Dropdown.Menu>
+        </Dropdown>
+        </Message>
+    );
+  }
 }
 
 export default FamilyScreen;
