@@ -20,6 +20,7 @@ const styles = {
   container: {
     display: 'flex',
     width: '100%',
+    flex: 'none'
   }
 };
 
@@ -121,7 +122,7 @@ class RegistrationForm extends Component {
           <Divider/>
 
           {/* At this point, the form elements are up to the manufacturer */}
-          <Form.Field>
+          <div style={{ height: '100%', width: '100%', display: 'flex', flexFlow: 'column', padding: '0 1rem'}}>
 
             {/* Blood Pressure */}
             <Message info>
@@ -205,7 +206,7 @@ class RegistrationForm extends Component {
                 value={this.state.respiratory} />
               <p style={styles3.description}>Test Text for respiratory rate</p>
             </Message>
-          </Form.Field>
+          </div>
         </Form>
       </div>
     );

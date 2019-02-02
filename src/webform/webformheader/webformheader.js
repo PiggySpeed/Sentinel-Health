@@ -5,14 +5,15 @@ const styles = {
     return {
       position: 'relative',
       display: 'flex',
+      flex: 'none',
       height: height,
       width: '100%',
       overflow: 'hidden'
     }
   },
   headerImg: {
-    height: '100%',
-    width: 'auto'
+    height: 'auto',
+    width: '100%'
   },
   textContainer: {
     position: 'absolute',
@@ -28,13 +29,15 @@ const styles = {
     position: 'relative',
     fontWeight: 'bold',
     color: 'white',
+    textShadow: '0px 0px 5px #000000',
     fontSize: 28
   },
   subtitle: {
-    color: 'white'
+    color: 'white',
+    textShadow: '0px 0px 5px #000000'
   },
   learnmore: {
-    textDecoration: 'underline'
+    textDecoration: 'underline',
   }
 };
 
