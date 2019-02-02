@@ -12,43 +12,79 @@ const MOCK_INFO_TEXT = "Mock Infopanel body text";
 
 
 const styles = {
-  container: {
-    display: 'flex',
-    flexFlow: 'column',
-    height: '100%',
-    width: '100%',
-    overflowY: 'scroll'
-  },
-  innerContainer: {
-    display: 'flex',
-    flexFlow: 'column',
-    height: 'min-content',
-    overflowX: 'hidden'
-  }
+	container: {
+		display: 'flex',
+		flexFlow: 'column',
+		height: '100%',
+		width: '100%',
+		alignItems: 'center'
+		//overflowY: 'scroll'
+	},
+	innerContainer: {
+		display: 'flex',
+		flexFlow: 'column',
+		height: 'min-content',
+		overflowX: 'hidden',
+		width: '70%'
+	},
+	header: {
+		height: 90,
+		width: '100%',
+		backgroundColor: '#003b64',
+		display: 'flex',
+		justifyContent: 'center'
+	},
+	innerHeader: {
+		width: '70%',
+		display: 'flex',
+		justifyContent: 'flex-start',
+		alignItems: 'center'
+	},
+	logo: {
+		width: 70,
+		height: 70
+	},
+	body: {
+		width: '70%',
+		marginBottom: 20
+	},
+	confirmationText: {
+		marginTop: 10,
+		marginBottom: 10
+	},
 };
 
 class WebformScreen extends Component {
-  render() {
-    return (
-      <div style={styles.container}>
-        <div style={styles.innerContainer}>
+	render() {
+		return (
+			<div style={styles.container}>
+				<div style={styles.header}>
+					<div style={styles.innerHeader}>
+						<img style={styles.logo} src={'https://images.bbycastatic.ca/sf/images/common/main-logo.svg'} alt=''/>
+					</div>
+				</div>
+				<div style={styles.body}>
+					<h1 style={styles.confirmationText}>Confirmation</h1>
+					<h3>You have successfully made the order</h3>
+				</div>
+				<div style={styles.innerContainer}>
 
-          <WebformHeader
-            title="Peace of Mind"
-            subtitle="Buying this for a loved one? Get notified when something goes wrong."
-            headerImg={MockHeaderImage}
-            height={200}
-            learnMoreURL="https://www.omronhealthcare.ca/blood-pressure/"
-          />
-          <div className="responsive-form">
-            <RegistrationForm />
-            <InfoPanel title={MOCK_INFO_TITLE} text={MOCK_INFO_TEXT} />
-          </div>
+					<WebformHeader
+						title="Peace of Mind"
+						subtitle="Buying this for a loved one? Get notified when something goes wrong."
+						headerImg={MockHeaderImage}
+						height={200}
+						learnMoreURL="https://www.omronhealthcare.ca/blood-pressure/"
+					/>
+					<div className="responsive-form">
+						<RegistrationForm />
+						<InfoPanel title={MOCK_INFO_TITLE} text={MOCK_INFO_TEXT} />
+					</div>
 
-        </div>
-      </div>
-    );
-  }
+				</div>
+			</div>
+		);
+	}
 }
 
 export default WebformScreen;

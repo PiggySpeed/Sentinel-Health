@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './family.css';
 
+import Webform from "../webform/webform.js";
+
 const styles = {
 	container: {
 		display: 'flex',
@@ -58,6 +60,8 @@ class FamilyScreen extends Component {
 				<div style={styles.body}>
 					<h1 style={styles.confirmationText}>Confirmation</h1>
 					<h3>You have successfully made the order</h3>
+
+					<Webform></Webform>
 
 				</div>
 			</div>
