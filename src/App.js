@@ -20,8 +20,8 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App" >
-				<Splash />
-				{/*<Family />*/}
+				{/* <Splash /> */}
+				<Family />
 				{/*<Member />*/}
 				{/*<Device />*/}
 			</div>
