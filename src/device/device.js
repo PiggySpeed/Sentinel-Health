@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import './device.css';
+
+import Header from './header';
 
 const styles = {
   container: {
@@ -13,7 +16,7 @@ class DeviceScreen extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <h1>Hello World</h1>
+        <Header />
       </div>
     );
   }
