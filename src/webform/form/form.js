@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
-import './device.css';
-
-import Header from './header';
+import { Button, Checkbox, Form } from 'semantic-ui-react'
 
 const styles = {
   container: {
     display: 'flex',
-    height: '100%',
     width: '100%',
-    border: '1px solid black'
   }
 };
 
-class DeviceScreen extends Component {
+class Form extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <Header />
+
       </div>
     );
   }
 }
 
-export default DeviceScreen;
+export default Form;

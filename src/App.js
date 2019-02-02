@@ -6,6 +6,7 @@ import Splash from "./splash/splash.js";
 import Family from "./family/family.js";
 import Member from "./member/member.js";
 import Device from "./device/device.js";
+import Webform from "./webform/webform.js";
 
 class App extends Component {
   render() {
@@ -17,11 +18,13 @@ class App extends Component {
               <Link to="/family">Family</Link>
               <Link to="/member">Member</Link>
               <Link to="/about">Device</Link>
+              <Link to="/webform">Webform</Link>
             </div>
-            <Route path="/" exact component={Splash} />
+            <Route path="/" exact component={Device} />
             <Route path="/family" exact component={Family} />
             <Route path="/member" exact component={Member} />
             <Route path="/device" exact component={Device} />
+            <Route path="/webform" exact component={Webform} />
           </div>
         </Router>
       </div>
