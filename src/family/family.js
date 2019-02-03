@@ -73,7 +73,7 @@ class FamilyScreen extends Component {
             label={(language == '0') ? 'Message' : '메시지'}
             type='text'
             style={{ width: '100%'}}
-            placeholder="Starbucks Nguyen"/>
+            value={(language == '0') ? 'Hi Dad, Can I have your consent to use your data to monitor your health' : '안녕 아빠, 당신의 건강을 모니터하기 위해 데이터를 사용하는 것에 동의 할 수 있습니까?'}/>
         {
           this.state.isMail ?
             <Form.Input
