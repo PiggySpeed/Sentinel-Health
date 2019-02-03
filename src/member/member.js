@@ -43,13 +43,15 @@ class MemberScreen extends Component {
   }
 
   render() {
+    const {language} = this.props;
+    console.log(language);
     return (
       <Message info>
         <MessageHeader
             icon="alarm outline"
-            title="Notification Options"
-            subtitle="I'd like to receive notification by: " />
-        <Checkbox toggle label="Phone" value="Phone" checked={this.state.isByPhone}
+            title={(language == '0') ? "Notification Options" : "알림 옵션"}
+            subtitle={(language == '0') ? "I'd like to receive notification by: " : "나는 다음과 같이 통보를 받고 싶다."}/>
+        <Checkbox toggle label={(language == '0') ? "Phone" : "전화"} value="Phone" checked={this.state.isByPhone}
           onChange={() => this.notifyByPhoneChanged()}/>
         {
           this.state.isByPhone ?
@@ -62,7 +64,7 @@ class MemberScreen extends Component {
             : null
         }
         <br/>
-        <Checkbox toggle label="Email" value="Email" checked={this.state.isByEmail}
+        <Checkbox toggle label={(language == '0')? "Email" : "이메일"} value="Email" checked={this.state.isByEmail}
           onChange={() => this.notifyByEmailChanged()}
           icon='mail'/>
         {
@@ -85,6 +87,10 @@ class MemberScreen extends Component {
       </Message>
     );
   }
+}
+
+MemberScreen.propTypes = {
+  language: String,
 }
 
 export default MemberScreen;

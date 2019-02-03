@@ -18,7 +18,10 @@ const styles = {
   headerBar: {
     height: 200,
     width: '100%',
-    backgroundColor: '#0673AE'
+    backgroundColor: '#0673AE',
+    display: 'flex',
+    flexFlow: 'row',
+    justifyContent: 'flex-end',
   },
   textContainer: {
     position: 'absolute',
@@ -46,23 +49,41 @@ const styles = {
     textDecoration: 'underline',
   }
 };
-
+let language = 0;
 class WebformHeader extends Component {
+
+  constructor(props){
+    super(props);
+  }
+
+  componentWillMount(){
+    this.setState({
+      language: 0,
+    });
+  }
+
   render() {
+    const {language} = this.props;
+    console.log(language);
     return (
       <div style={styles.container({height: this.props.height})}>
         {/*<img src={this.props.headerImg} style={styles.headerImg} />*/}
-        <div style={styles.headerBar}></div>
+        <div style={styles.headerBar}>
+        </div>
         <div style={styles.textContainer}>
           <h1 style={styles.title}>{this.props.title}</h1>
           <span>
             <h2 style={styles.subtitle}>{this.props.subtitle}</h2>
-            <a href={this.props.learnMoreURL} style={styles.learnmore}>Learn More</a>
+            <a href={this.props.learnMoreURL} style={styles.learnmore}>{(language == '0') ? 'Learn More' : '더 알아보기'}</a>
           </span>
         </div>
       </div>
     );
   }
+}
+
+WebformHeader.propTypes = {
+  language: String,
 }
 
 export default WebformHeader;

@@ -56,38 +56,40 @@ class FamilyScreen extends Component {
 
 
   render() {
+    const {language} = this.props;
+    console.log(language);
     return (
         <Message info>
           <MessageHeader
             icon="check"
-            title="Consent Options"/>
+            title={(language == '0') ? "Consent Options" : "동의 옵션"}/>
 
           <span style={{ display: 'flex', width: '100%' }}>
-            <Button style={{width: '50%'}} content="Mail" primary={this.state.isMail} onClick={() => this.handleMailClick()}/>
-            <Button style={{width: '50%'}} content="Email" primary={this.state.isEmail} onClick={() => this.handleEmailClick()}/>
-            <Button style={{width: '50%'}} content="Phone Number" primary={this.state.isTel} onClick={() => this.handleTelClick()}/>
+            <Button style={{width: '50%'}} content={(language == '0') ? "Mail" : "우편"} primary={this.state.isMail} onClick={() => this.handleMailClick()}/>
+            <Button style={{width: '50%'}} content={(language== '0') ? "Email" : "이메일"} primary={this.state.isEmail} onClick={() => this.handleEmailClick()}/>
+            <Button style={{width: '50%'}} content={(language == '0') ? "Phone Number" : "전화 번호"} primary={this.state.isTel} onClick={() => this.handleTelClick()}/>
           </span>
-          <Form.Input
-            label='Name'
+          <Form.TextArea
+            label={(language == '0') ? 'Message' : '메시지'}
             type='text'
-            style={{ width: '50%'}}
+            style={{ width: '100%'}}
             placeholder="Starbucks Nguyen"/>
         {
           this.state.isMail ?
             <Form.Input
-            label='Mail'
+            label={(language == '0') ? 'Mail' : '우편'}
             type='text'
             icon='truck'
             iconPosition='right'
             style={{ width: '50%'}}
-            placeholder="Mailing Address" />
+            placeholder={(language=='0') ? "Mailing Address" : "우편 주소"} />
             : null
         }
 
         {
           this.state.isEmail ?
             <Form.Input
-            label='Email'
+            label={(language == '0') ? 'Email' : '이메일'}
             type='email'
             icon='mail'
             iconPosition='right'
@@ -99,7 +101,7 @@ class FamilyScreen extends Component {
         {
           this.state.isTel ?
             <Form.Input
-            label='Phone Number'
+            label={(language == '0') ? 'Phone Number' : '전화 번호'}
             type='tel'
             icon='phone'
             iconPosition='right'
@@ -107,18 +109,13 @@ class FamilyScreen extends Component {
             placeholder="+1 (234) 567 890" />
             : null
         }
-
-        <Dropdown text='Select Language'>
-          <Dropdown.Menu>
-            <Dropdown.Item text='Korean' />
-            <Dropdown.Item text='Vietnamese' />
-            <Dropdown.Item text='Chinese' />
-            <Dropdown.Item text='English' />
-          </Dropdown.Menu>
-        </Dropdown>
         </Message>
     );
   }
+}
+
+FamilyScreen.propTypes = {
+  language: String,
 }
 
 export default FamilyScreen;

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './webform.css';
-
+import {Button, Icon} from 'semantic-ui-react';
 // import MockHeaderImage from './mock_header_image.png';
 import MockHeaderImage from './background_1.png';
 import WebformHeader from './webformheader/webformheader';
 import RegistrationForm from './registrationform/registrationform';
-import InfoPanel from './infopanel/infopanel'
+import InfoPanel from './infopanel/infopanel';
 
 const MOCK_INFO_TITLE = "Mock Infopanel title";
 const MOCK_INFO_TEXT = "Mock Infopanel body text";
@@ -54,6 +54,23 @@ const styles = {
 };
 
 class WebformScreen extends Component {
+
+	constructor(props){
+		super(props);
+	}
+	componentWillMount(){
+		this.setState({
+			language: 0,
+		  });
+	}
+
+	changeLanguage = (value) =>{
+		console.log(value);
+		this.setState({
+		  language: value,
+		});
+	}
+
 	render() {
 		return (
 			<div style={styles.container}>
@@ -69,14 +86,26 @@ class WebformScreen extends Component {
 				<div style={styles.innerContainer} className="responsive-form">
 
 					<WebformHeader
-						title="Peace of Mind"
-						subtitle="Buying this for a loved one? Get notified when something goes wrong."
+						title={(this.state.language=='0') ? "Peace of Mind" : "마음의 평화"}
+						subtitle={(this.state.language == '0') ? "Buying this for a loved one? Get notified when something goes wrong." : "사랑하는 사람을 위해 이것을 사면 무엇인가 잘못되었을 때 통보 해주십시오."}
 						headerImg={MockHeaderImage}
-						height={200}
+						height={200} language={this.state.language}
 						learnMoreURL="https://www.omronhealthcare.ca/blood-pressure/"
 					/>
+        
+					{(this.state.language == 0) 
+						? <Button style={{height: 50, width: 50}} icon='world'
+						onClick={() => this.changeLanguage(1)}/> 
+						: <Button style={{height: 50, width: 50}} icon='clock'
+						onClick={() => this.changeLanguage(0)} />
+					}
 					<div style={{display: 'flex', flexFlow: 'column'}}>
-						<RegistrationForm />
+						{(this.state.language == 0) 
+							? <RegistrationForm language={'0'}/>
+							: <RegistrationForm language={'1'}/>
+
+						}
+						{/* <RegistrationForm language={this.state.language} data={this.state.language}/> */}
 						<InfoPanel title={MOCK_INFO_TITLE} text={MOCK_INFO_TEXT} />
 					</div>
 
