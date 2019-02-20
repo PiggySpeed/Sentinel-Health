@@ -22,7 +22,8 @@ const styles = {
   container: {
     display: 'flex',
     width: '100%',
-    flex: 'none'
+    flex: 'none',
+    paddingBottom: '200px'
   },
   innerContainer: {
     display: 'flex',
@@ -93,7 +94,7 @@ export const MessageHeader = ({ icon, title, subtitle, borderColor }) => (
       name={icon} />
     <div style={{ display: 'flex', flexFlow: 'column' }}>
       <Message.Header style={{ marginTop: '0.5rem', color: '#0e566c' }}>{title}</Message.Header>
-      <label style={{color: '#0e566c'}}>{subtitle}</label>         
+      <label style={{color: '#0e566c'}}>{subtitle}</label>
     </div>
   </div>
 );
@@ -105,7 +106,7 @@ class RegistrationForm extends Component {
     this.setState({
       language: language,
     });
-    
+
     this.state = {
       systolic: 120,
       diastolic: 80,
