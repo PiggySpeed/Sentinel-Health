@@ -100,13 +100,7 @@ class WebformScreen extends Component {
 						onClick={() => this.changeLanguage(0)} />
 					}
 					<div style={{display: 'flex', flexFlow: 'column'}}>
-						{(this.state.language == 0)
-							? <RegistrationForm language={'0'}/>
-							: <RegistrationForm language={'1'}/>
-
-						}
-						{/* <RegistrationForm language={this.state.language} data={this.state.language}/> */}
-						{/*<InfoPanel title={MOCK_INFO_TITLE} text={MOCK_INFO_TEXT} />*/}
+						<RegistrationForm language={this.state.language}/>
 					</div>
 					<div style={{flex:'none', height: '400px', width: '100%' }}> </div>
 
