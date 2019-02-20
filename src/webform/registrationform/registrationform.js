@@ -6,7 +6,8 @@ import {
   Divider,
   Form,
   Icon,
-  Message
+  Message,
+  Label
 } from 'semantic-ui-react'
 import MOCK_LOGO from '../ccs_logo.png';
 import FamilyScreen from '../../family/family';
@@ -16,6 +17,18 @@ import MemberScreen from '../../member/member';
 let MOCK_HEADER = 'The Canadian Cardiovascular Society Blood Pressure Monitoring Guidelines';
 let MOCK_BODY = 'Register your device for notifications when blood pressure goes out of range. Register your device for notifications when blood pressure goes out of range. Register your device for notifications when blood pressure goes out of range. Register your device for notifications when blood pressure goes out of range. Register your device for notifications when blood pressure goes out of range.';
 let MOCK_HYPERTENSION_TEXT = 'Ideally, blood pressure should be below 120/80 mmHg to maintain good health and reduce the risk of stroke, heart disease and other conditions. However, the target depends on factors like age, health conditions, and whether the reading is being taken at home or your health care professional’s office. If you have diabetes, kidney disease or other health conditions, speak to your health care professional about your readings and the treatment that is right for you. Remember, only your health care professional can tell you exactly what your target blood pressure should be.';
+
+const SYSTOLIC = 'systolic';
+const DIASTOLIC = 'diastolic';
+const HEART_RATE = 'heartrate';
+const RESPIRATORY = 'respiratory';
+const OXYGEN = 'oxygen';
+const SYSTOLIC_MAX = 120;
+const DIASTOLIC_MAX = 80;
+const HEART_RATE_MAX = 100;
+const RESPIRATORY_MAX = 20;
+const OXYGEN_MAX = 75;
+
 
 
 const styles = {
@@ -99,12 +112,17 @@ export const MessageHeader = ({ icon, title, subtitle, borderColor }) => (
   </div>
 );
 
+export const LabelDanger = () => {
+  return (<span><Label color='red' icon='warning'>Danger</Label></span>);
+}
+
 class RegistrationForm extends Component {
   constructor(props) {
     super(props);
     const {language} = this.props;
     this.setState({
       language: language,
+      isNotified : false,
     });
 
     this.state = {
@@ -120,13 +138,45 @@ class RegistrationForm extends Component {
 
   onInputChange(key, e) {
     this.setState({ [key]: e.target.value });
+    console.log('hi:::::' + e.target.value);
+    this.validateInput(key, e);
+  }
+
+  validateInput(key, e){
+    let isNotified = false;
+    key = key.toLowerCase();
+    if (key === SYSTOLIC){
+      (e.target.value > SYSTOLIC_MAX) 
+        ? isNotified = true
+        : isNotified = false;
+    } else if (key === DIASTOLIC){
+      (e.target.value > DIASTOLIC_MAX) 
+        ? isNotified = true
+        : isNotified = false;
+    } else if (key === HEART_RATE){
+      (e.target.value > HEART_RATE_MAX) 
+        ? isNotified = true
+        : isNotified = false;
+    } else if (key === OXYGEN){
+      (e.target.value > OXYGEN_MAX) 
+        ? isNotified = true
+        : isNotified = false;
+    } else if (key === RESPIRATORY){
+      (e.target.value > RESPIRATORY_MAX) 
+        ? isNotified = true
+        : isNotified = false;
+    }
+    this.setState({isNotified : isNotified});
+  }
+
+
+  onDropDownSelected (){
+    console.log('hihihihi');
   }
 
   render() {
     const {language} = this.props;
-    console.log(language);
     if (language == '1'){
-      console.log('is korean');
       MOCK_HEADER = '캐나다 심혈관 학회 혈압 모니터링 지침';
       MOCK_BODY = '혈압이 범위를 벗어 났을 때 알림 장치를 등록하십시오. 혈압이 범위를 벗어 났을 때 알림 장치를 등록하십시오. 혈압이 범위를 벗어 났을 때 알림 장치를 등록하십시오. 혈압이 범위를 벗어 났을 때 알림 장치를 등록하십시오. 혈압이 범위를 벗어 났을 때 알림 장치를 등록하십시오.';
       MOCK_HYPERTENSION_TEXT = '이상적으로는, 건강을 유지하고 뇌졸중, 심장 질환 및 기타 질병의 위험을 줄이려면 혈압이 120/80 mmHg 미만이어야합니다. 그러나 목표는 연령, 건강 상태, 집이나 건강 관리 전문가 사무실에서 책을 읽는지 여부 등의 요소에 따라 다릅니다. 귀하가 당뇨병, 신장 질환 또는 기타 건강 상태에 처한 경우 귀하의 건강 관리 전문가에게 귀하의 판독 및 귀하에게 적합한 대우에 관해 상담하십시오. 건강 관리 전문가만이 목표 혈압이 정확히 무엇인지 말해 줄 수 있습니다.';
@@ -150,6 +200,8 @@ class RegistrationForm extends Component {
 
           {/* At this point, the form elements are up to the manufacturer */}
           <div style={{ height: '100%', width: '100%', display: 'flex', flexFlow: 'column', padding: '0 1rem'}}>
+            
+            {this.state.isNotified == true ? <LabelDanger/> : null}
 
             {/* Blood Pressure */}
             <Message info>
@@ -161,23 +213,23 @@ class RegistrationForm extends Component {
               <span style={{ display: 'flex', width: '100%' }}>
                 <Form.Input
                   label={(language == '0') ? 'Systolic' : '수축기'}
-                  type='text'
+                  type='number'
                   style={{ width: '50%'}}
                   placeholder="120"
                   onChange={e => this.onInputChange('systolic', e)}
                   value={this.state.systolic} />
                 <Form.Input
                   label={(language == '0') ? 'Diastolic' : '확장기'}
-                  type='text'
+                  type='number'
                   style={{ width: '50%'}}
                   placeholder="80"
                   onChange={e => this.onInputChange('diastolic', e)}
                   value={this.state.diastolic} />
               </span>
-              <Dropdown text={(language == '0') ? 'Recommended Guidelines' : '권장 지침'}>
+              <Dropdown text={(language == '0') ? 'Recommended Guidelines' : '권장 지침'} onChange={this.onDropDownSelected()}>
                 <Dropdown.Menu>
                   <Dropdown.Item text={(language=='0') ? 'Canadian Diabetes Association 140/90' : '캐나다 당뇨병 협회 140/90'} />
-                  <Dropdown.Item text={(language == '0') ? 'Intensive Hypertensive Treatment 120/80' : '집중 고혈압 치료 120/80'} />
+                  <Dropdown.Item text={(language == '0') ? 'Intensive Hypertensive Treatment 120/80' : '집중 고혈압 치료 120/80'}/>
                   <Dropdown.Item text={(language == '0') ? 'Canadian Hypertensive Guidelines' : '캐나다 고혈압 가이드 라인'}/>
                 </Dropdown.Menu>
               </Dropdown>

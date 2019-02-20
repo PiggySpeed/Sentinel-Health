@@ -44,7 +44,6 @@ class MemberScreen extends Component {
 
   render() {
     const {language} = this.props;
-    console.log(language);
     return (
       <Message info>
         <MessageHeader

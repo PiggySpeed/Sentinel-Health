@@ -64,7 +64,6 @@ class WebformHeader extends Component {
 
   render() {
     const {language} = this.props;
-    console.log(language);
     return (
       <div style={styles.container({height: this.props.height})}>
         {/*<img src={this.props.headerImg} style={styles.headerImg} />*/}
