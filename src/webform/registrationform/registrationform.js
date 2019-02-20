@@ -24,11 +24,11 @@ const DIASTOLIC = 'diastolic';
 const HEART_RATE = 'heartrate';
 const RESPIRATORY = 'respiratory';
 const OXYGEN = 'oxygen';
-const SYSTOLIC_MAX = 120;
-const DIASTOLIC_MAX = 80;
-const HEART_RATE_MAX = 100;
-const RESPIRATORY_MAX = 20;
-const OXYGEN_MAX = 75;
+const SYSTOLIC_MAX = 200;
+const DIASTOLIC_MAX = 200;
+const HEART_RATE_MAX = 1000;
+const RESPIRATORY_MAX = 200;
+const OXYGEN_MAX = 7500;
 
 let systolicNoti = false;
 let diastolicNoti = false;

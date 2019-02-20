@@ -85,7 +85,7 @@ class WebformScreen extends Component {
 				<div style={styles.innerContainer} className="responsive-form">
 
 					<WebformHeader
-						title={(this.state.language === 0) ? "Stay Alert with Sentinel" : "마음의 평화"}
+						title={(this.state.language === 0) ? "Stay Informed with Sentinel" : "마음의 평화"}
 						subtitle={(this.state.language === 0) ? "Buying this for a loved one? Get notified when something goes wrong." : "사랑하는 사람을 위해 이것을 사면 무엇인가 잘못되었을 때 통보 해주십시오."}
 						headerImg={MockHeaderImage}
 						height={200} language={this.state.language}
