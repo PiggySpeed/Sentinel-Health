@@ -61,7 +61,7 @@ class FamilyScreen extends Component {
         <Message info>
           <MessageHeader
             icon="check"
-            title={(language == '0') ? "Consent Options" : "동의 옵션"}/>
+            title={(language == '0') ? "Consent Options" : "동의 옵션"} Í/>
 
           <span style={{ display: 'flex', width: '100%' }}>
             <Button style={{width: '50%'}} content={(language == '0') ? "Mail" : "우편"} primary={this.state.isMail} onClick={() => this.handleMailClick()}/>

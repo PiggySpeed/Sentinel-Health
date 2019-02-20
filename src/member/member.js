@@ -49,7 +49,8 @@ class MemberScreen extends Component {
         <MessageHeader
             icon="alarm outline"
             title={(language == '0') ? "Notification Options" : "알림 옵션"}
-            subtitle={(language == '0') ? "I'd like to receive notification by: " : "나는 다음과 같이 통보를 받고 싶다."}/>
+            subtitle={(language == '0') ? "I'd like to receive notification by: " : "나는 다음과 같이 통보를 받고 싶다."}
+            showWarning={false}/>
         <Checkbox toggle label={(language == '0') ? "Phone" : "전화"} value="Phone" checked={this.state.isByPhone}
           onChange={() => this.notifyByPhoneChanged()}/>
         {

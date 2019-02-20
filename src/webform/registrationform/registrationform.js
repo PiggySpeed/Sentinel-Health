@@ -29,7 +29,8 @@ const HEART_RATE_MAX = 100;
 const RESPIRATORY_MAX = 20;
 const OXYGEN_MAX = 75;
 
-
+let systolicNoti = false;
+let diastolicNoti = false;
 
 const styles = {
   container: {
@@ -90,7 +91,8 @@ const NotificationOptions = ({}) => (
   </span>
 );
 
-export const MessageHeader = ({ icon, title, subtitle, borderColor }) => (
+export const MessageHeader = ({ icon, title, subtitle, borderColor, keyName, showWarning }) => (
+  <div>
   <div style={{ display: 'flex', width: '100%', alignItems: 'center', marginBottom: '1rem' }}>
     <Icon
       style={{
@@ -106,15 +108,16 @@ export const MessageHeader = ({ icon, title, subtitle, borderColor }) => (
         borderRadius: 5 }}
       name={icon} />
     <div style={{ display: 'flex', flexFlow: 'column' }}>
-      <Message.Header style={{ marginTop: '0.5rem', color: '#0e566c' }}>{title}</Message.Header>
+      <Message.Header style={{ marginTop: '0.5rem', color: '#0e566c'}}>{title}</Message.Header>
       <label style={{color: '#0e566c'}}>{subtitle}</label>
     </div>
+    <br/>
+  </div>
+  <div style={{marginBottom: '1rem'}}>
+    {showWarning ? <span><Label color='red' icon='warning'>Warning! Your {keyName} level is too high!</Label></span> : null}
+  </div>
   </div>
 );
-
-export const LabelDanger = () => {
-  return (<span><Label color='red' icon='warning'>Danger</Label></span>);
-}
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -122,7 +125,11 @@ class RegistrationForm extends Component {
     const {language} = this.props;
     this.setState({
       language: language,
-      isNotified : false,
+      isSystolicNotified : false,
+      isHeartRateNotified : false,
+      isOxygenNotified : false,
+      isRespNotified : false,
+      fontSize: 10,
     });
 
     this.state = {
@@ -142,31 +149,57 @@ class RegistrationForm extends Component {
     this.validateInput(key, e);
   }
 
+ 
+
   validateInput(key, e){
     let isNotified = false;
     key = key.toLowerCase();
     if (key === SYSTOLIC){
       (e.target.value > SYSTOLIC_MAX) 
-        ? isNotified = true
-        : isNotified = false;
-    } else if (key === DIASTOLIC){
+        ? systolicNoti = true
+        : systolicNoti = false;
+    }
+
+    if (key === DIASTOLIC){
       (e.target.value > DIASTOLIC_MAX) 
-        ? isNotified = true
-        : isNotified = false;
-    } else if (key === HEART_RATE){
+        ? diastolicNoti = true
+        : diastolicNoti = false;
+    }
+    (systolicNoti || diastolicNoti) 
+      ? this.setState({
+        isSystolicNotified: true
+      }) : this.setState({
+        isSystolicNotified: false
+      })
+
+    
+    if (key === HEART_RATE){
       (e.target.value > HEART_RATE_MAX) 
         ? isNotified = true
         : isNotified = false;
-    } else if (key === OXYGEN){
+
+        this.setState({
+          isHeartRateNotified: isNotified,
+        })
+    } 
+    
+    if (key === OXYGEN){
       (e.target.value > OXYGEN_MAX) 
         ? isNotified = true
         : isNotified = false;
-    } else if (key === RESPIRATORY){
+      this.setState({
+        isOxygenNotified: isNotified,
+      })
+    } 
+    
+    if (key === RESPIRATORY){
       (e.target.value > RESPIRATORY_MAX) 
         ? isNotified = true
         : isNotified = false;
+      this.setState({
+        isRespNotified: isNotified,
+      })
     }
-    this.setState({isNotified : isNotified});
   }
 
 
@@ -200,15 +233,13 @@ class RegistrationForm extends Component {
 
           {/* At this point, the form elements are up to the manufacturer */}
           <div style={{ height: '100%', width: '100%', display: 'flex', flexFlow: 'column', padding: '0 1rem'}}>
-            
-            {this.state.isNotified == true ? <LabelDanger/> : null}
-
             {/* Blood Pressure */}
             <Message info>
               <MessageHeader
                 icon="heart outline"
                 title={(language == '0') ? "Blood Pressure" : '혈압'}
                 subtitle={(language == '0') ? "Notify me when blood pressure is too high or low." : '혈압이 너무 높거나 낮을 때 알려주십시오.'}
+                keyName='systolic or diastolic' showWarning={this.state.isSystolicNotified}
               />
               <span style={{ display: 'flex', width: '100%' }}>
                 <Form.Input
@@ -242,10 +273,11 @@ class RegistrationForm extends Component {
                 icon="heartbeat"
                 title={(language == '0') ? "Heart Rate" : "심장 박동수"}
                 subtitle={(language == '0') ? "Notify me when heart rate is too low or high." : "심장 박동이 너무 낮거나 높을 때 알림."}
+                showWarning={this.state.isHeartRateNotified} keyName={'heart rate'}
               />
               <Form.Input
                 label={(language == '0') ? 'Heart Rate' : '심박수'}
-                type='text'
+                type='number'
                 style={{ width: '50%'}}
                 onChange={e => this.onInputChange('heartrate', e)}
                 value={this.state.heartrate} />
@@ -259,10 +291,11 @@ class RegistrationForm extends Component {
                 icon="comment outline"
                 title={(language == '0') ? "Blood Oxygen Saturation" : "혈액 산소 포화 상태"}
                 subtitle={(language == '0') ? "Notify me when the level of oxygen saturation in my blood is too low." : "내 피의 산소 포화도가 너무 낮을 때 알려 줘."}
+                showWarning={this.state.isOxygenNotified} keyName={'oxygen'}
               />
               <Form.Input
                 label={(language == '0') ? 'Blood Oxygen Saturation': '혈액 산소 포화 상태'}
-                type='text'
+                type='number'
                 style={{ width: '50%'}}
                 onChange={e => this.onInputChange('oxygen', e)}
                 value={this.state.oxygen} />
@@ -275,11 +308,11 @@ class RegistrationForm extends Component {
               <MessageHeader
                 icon="cloud"
                 title={(language=='0') ? "Respiratory Rate" : "호흡"}
-                subtitle={(language == '0') ? "Notify me when the respiratory rate is too low or high." : "호흡률이 너무 낮거나 높을 때 알림."}
+                subtitle={(language == '0') ? "Notify me when the respiratory rate is too low or high." : "호흡률이 너무 낮거나 높을 때 알림."} showWarning={this.state.isRespNotified} keyName={'respitory'}
               />
               <Form.Input
                 label={(language == '0') ? 'Respiratory Rate' : '호흡'}
-                type='text'
+                type='number'
                 style={{ width: '50%'}}
                 onChange={e => this.onInputChange('respiratory', e)}
                 value={this.state.respiratory} />
