@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Button, Icon} from 'semantic-ui-react';
 
 const styles = {
   container: ({height}) => {
@@ -8,8 +9,9 @@ const styles = {
       flex: 'none',
       height: height,
       width: '100%',
-      overflow: 'hidden'
-    }
+      overflow: 'hidden',
+      backgroundImage: 'linear-gradient(to bottom right, #0673AE, #78FFE2)'
+  }
   },
   headerImg: {
     height: 'auto',
@@ -18,7 +20,7 @@ const styles = {
   headerBar: {
     height: 200,
     width: '100%',
-    backgroundColor: '#0673AE',
+    // backgroundColor: '#0673AE',
     display: 'flex',
     flexFlow: 'row',
     justifyContent: 'flex-end',
@@ -73,7 +75,16 @@ class WebformHeader extends Component {
           <h1 style={styles.title}>{this.props.title}</h1>
           <span>
             <h2 style={styles.subtitle}>{this.props.subtitle}</h2>
-            <a href={this.props.learnMoreURL} style={styles.learnmore}>{(language == '0') ? 'Learn More' : '더 알아보기'}</a>
+              <span style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end'}}>
+              <a href={this.props.learnMoreURL} style={styles.learnmore}>{(language == '0') ? 'Learn More' : '더 알아보기'}</a>
+
+              {(this.props.language === 0)
+               ? <Button style={{height: 50, width: 50}} icon='world'
+                         onClick={() => this.props.onTranslate(1)}/>
+               : <Button style={{height: 50, width: 50}} icon='clock'
+                         onClick={() => this.props.onTranslate(0)} />
+              }
+            </span>
           </span>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './webform.css';
-import {Button, Icon} from 'semantic-ui-react';
 // import MockHeaderImage from './mock_header_image.png';
 import MockHeaderImage from './background_1.png';
 import WebformHeader from './webformheader/webformheader';
@@ -86,19 +85,14 @@ class WebformScreen extends Component {
 				<div style={styles.innerContainer} className="responsive-form">
 
 					<WebformHeader
-						title={(this.state.language=='0') ? "Peace of Mind" : "마음의 평화"}
-						subtitle={(this.state.language == '0') ? "Buying this for a loved one? Get notified when something goes wrong." : "사랑하는 사람을 위해 이것을 사면 무엇인가 잘못되었을 때 통보 해주십시오."}
+						title={(this.state.language === 0) ? "Stay Alert with Sentinel" : "마음의 평화"}
+						subtitle={(this.state.language === 0) ? "Buying this for a loved one? Get notified when something goes wrong." : "사랑하는 사람을 위해 이것을 사면 무엇인가 잘못되었을 때 통보 해주십시오."}
 						headerImg={MockHeaderImage}
 						height={200} language={this.state.language}
 						learnMoreURL="https://www.omronhealthcare.ca/blood-pressure/"
+						language={this.state.language}
+						onTranslate={this.changeLanguage}
 					/>
-
-					{(this.state.language == 0)
-						? <Button style={{height: 50, width: 50}} icon='world'
-						onClick={() => this.changeLanguage(1)}/>
-						: <Button style={{height: 50, width: 50}} icon='clock'
-						onClick={() => this.changeLanguage(0)} />
-					}
 					<div style={{display: 'flex', flexFlow: 'column'}}>
 						<RegistrationForm language={this.state.language}/>
 					</div>

@@ -31,7 +31,7 @@ class App extends Component {
 							<Link to="/about">Device</Link>
 							<Link to="/webform">Webform</Link>
 						</div>}
-						<Route path="/" exact component={Device} />
+						<Route path="/" exact component={Webform} />
 						<Route path="/family" exact component={Family} />
 						<Route path="/member" exact component={Member} />
 						<Route path="/device" exact component={Device} />

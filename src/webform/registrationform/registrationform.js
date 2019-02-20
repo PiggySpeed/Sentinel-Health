@@ -12,6 +12,7 @@ import {
 import MOCK_LOGO from '../ccs_logo.png';
 import FamilyScreen from '../../family/family';
 import MemberScreen from '../../member/member';
+import { Slider, Rail, Handles, Tracks } from "react-compound-slider";
 
 
 let MOCK_HEADER = 'The Canadian Cardiovascular Society Blood Pressure Monitoring Guidelines';
@@ -43,6 +44,11 @@ const styles = {
     display: 'flex',
     flexFlow: 'column',
     width: '100%'
+  },
+  sliderStyle: {
+    position: "relative",
+    width: "80%",
+    margin: "20% 10%"
   }
 };
 
@@ -149,51 +155,51 @@ class RegistrationForm extends Component {
     this.validateInput(key, e);
   }
 
- 
+
 
   validateInput(key, e){
     let isNotified = false;
     key = key.toLowerCase();
     if (key === SYSTOLIC){
-      (e.target.value > SYSTOLIC_MAX) 
+      (e.target.value > SYSTOLIC_MAX)
         ? systolicNoti = true
         : systolicNoti = false;
     }
 
     if (key === DIASTOLIC){
-      (e.target.value > DIASTOLIC_MAX) 
+      (e.target.value > DIASTOLIC_MAX)
         ? diastolicNoti = true
         : diastolicNoti = false;
     }
-    (systolicNoti || diastolicNoti) 
+    (systolicNoti || diastolicNoti)
       ? this.setState({
         isSystolicNotified: true
       }) : this.setState({
         isSystolicNotified: false
       })
 
-    
+
     if (key === HEART_RATE){
-      (e.target.value > HEART_RATE_MAX) 
+      (e.target.value > HEART_RATE_MAX)
         ? isNotified = true
         : isNotified = false;
 
         this.setState({
           isHeartRateNotified: isNotified,
         })
-    } 
-    
+    }
+
     if (key === OXYGEN){
-      (e.target.value > OXYGEN_MAX) 
+      (e.target.value > OXYGEN_MAX)
         ? isNotified = true
         : isNotified = false;
       this.setState({
         isOxygenNotified: isNotified,
       })
-    } 
-    
+    }
+
     if (key === RESPIRATORY){
-      (e.target.value > RESPIRATORY_MAX) 
+      (e.target.value > RESPIRATORY_MAX)
         ? isNotified = true
         : isNotified = false;
       this.setState({
@@ -242,6 +248,7 @@ class RegistrationForm extends Component {
                 keyName='systolic or diastolic' showWarning={this.state.isSystolicNotified}
               />
               <span style={{ display: 'flex', width: '100%' }}>
+                {/*<RangeSlider />*/}
                 <Form.Input
                   label={(language == '0') ? 'Systolic' : '수축기'}
                   type='number'
