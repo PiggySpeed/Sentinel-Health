@@ -92,22 +92,23 @@ class WebformScreen extends Component {
 						height={200} language={this.state.language}
 						learnMoreURL="https://www.omronhealthcare.ca/blood-pressure/"
 					/>
-        
-					{(this.state.language == 0) 
+
+					{(this.state.language == 0)
 						? <Button style={{height: 50, width: 50}} icon='world'
-						onClick={() => this.changeLanguage(1)}/> 
+						onClick={() => this.changeLanguage(1)}/>
 						: <Button style={{height: 50, width: 50}} icon='clock'
 						onClick={() => this.changeLanguage(0)} />
 					}
 					<div style={{display: 'flex', flexFlow: 'column'}}>
-						{(this.state.language == 0) 
+						{(this.state.language == 0)
 							? <RegistrationForm language={'0'}/>
 							: <RegistrationForm language={'1'}/>
 
 						}
 						{/* <RegistrationForm language={this.state.language} data={this.state.language}/> */}
-						<InfoPanel title={MOCK_INFO_TITLE} text={MOCK_INFO_TEXT} />
+						{/*<InfoPanel title={MOCK_INFO_TITLE} text={MOCK_INFO_TEXT} />*/}
 					</div>
+					<div style={{flex:'none', height: '400px', width: '100%' }}> </div>
 
 				</div>
 			</div>
